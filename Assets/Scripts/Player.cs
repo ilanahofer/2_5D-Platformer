@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _gravity = 1.0f;
     [SerializeField]
-    private float _jumpHeight = 15.0f;
+    private float _jumpHeight = 20.0f;
     private float _yVelocity;
     private bool _canDoubleJump = false;
     // variable for player coins

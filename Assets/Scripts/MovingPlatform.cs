@@ -6,7 +6,7 @@ public class MovingPlatform : MonoBehaviour
 {
     [SerializeField]
     private Transform _targetA, _targetB;
-    private float _speed = 1.0f;
+    private float _speed = 2.0f;
     private bool _switching = false;
 
     // Start is called before the first frame update
@@ -16,8 +16,15 @@ public class MovingPlatform : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+
+        // current transform = Vector3.MoveTowards (current position, targe?)
+        // got to point B
+        // if at point B
+        // got to point A
+        // if at point A
+        // go to point B
 
         if (_switching == false)
         {
@@ -38,12 +45,30 @@ public class MovingPlatform : MonoBehaviour
             _switching = false;
         }
 
-        // current transform = Vector3.MoveTowards (current position, targe?)
-        // got to point B
-        // if at point B
-        // got to point A
-        // if at point A
-        // go to point B
     }
 
+
+    // Collision detection with player
+    // if we collide with player
+    // tke the player parent = this game object
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            other.transform.parent = this.transform;
+        }
+    }
+
+    // Exit collision
+    // check if the player exited
+    // take the player parent = null
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            other.transform.parent = null;
+        }
+    }
 }
